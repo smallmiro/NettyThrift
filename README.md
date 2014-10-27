@@ -12,7 +12,6 @@ Example
 server source
 
 public class JavaServer {
-
 	private static final Logger log = LoggerFactory.getLogger(JavaServer.class);
 	static final String HOST = System.getProperty("host", "127.0.0.1");
 
@@ -81,11 +80,8 @@ client source
 
 public class JavaClient {
 	private static final Logger log = LoggerFactory.getLogger(JavaClient.class);
-
 	public static void main(String[] args) {
-
 		try {
-
 			TSocket transport = new TSocket("localhost", 9090);
 			transport.open();
 
