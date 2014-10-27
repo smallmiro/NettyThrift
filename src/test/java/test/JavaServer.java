@@ -1,4 +1,4 @@
-package com.nhnent.nettythrift;
+package test;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

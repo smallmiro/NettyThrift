@@ -1,4 +1,4 @@
-package com.nhnent.nettythrift;
+package test;
 import java.util.HashMap;
 
 import org.apache.thrift.TException;

@@ -1,4 +1,4 @@
-package com.nhnent.nettythrift;
+package test;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
