@@ -5,6 +5,7 @@ This project is an implementation of [Thrift](http://thrift.apache.org/) clients
 
 It is also the change implementation used by [nifty](https://github.com/facebook/nifty)
 
+https://github.com/facebook/nifty/tree/master/nifty-core is a origianl source
 
 Example
 ===========
