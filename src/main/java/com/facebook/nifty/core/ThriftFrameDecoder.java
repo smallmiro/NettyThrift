@@ -28,8 +28,12 @@ import org.apache.thrift.protocol.TProtocolFactory;
 import org.apache.thrift.protocol.TProtocolUtil;
 import org.apache.thrift.protocol.TType;
 import org.apache.thrift.transport.TTransport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ThriftFrameDecoder extends ByteToMessageDecoder {
+	private static final Logger log = LoggerFactory.getLogger(ThriftFrameDecoder.class);
+
 	public static final int MESSAGE_FRAME_SIZE = 4;
 	private final int maxFrameSize;
 	private final TProtocolFactory inputProtocolFactory;
@@ -54,11 +58,16 @@ public class ThriftFrameDecoder extends ByteToMessageDecoder {
 		} else if (buffer.readableBytes() < MESSAGE_FRAME_SIZE) {
 			// Expecting a framed message, but not enough bytes available to read the frame size
 			ttransport = null;
+			log.error("Expecting a framed message, but not enough bytes available to read the frame size {}", MESSAGE_FRAME_SIZE);
 		} else {
 			// Messages with a zero MSB in the first byte are framed messages
 			ttransport = tryDecodeFramedMessage(ctx, buffer);
 		}
-		out.add(ttransport);
+		if(ttransport != null ) {
+			out.add(ttransport);
+		} else {
+			log.error("ttransport is null , firstByte is {}", firstByte);
+		}
 	}
 
 	private TTransport tryDecodeFramedMessage(ChannelHandlerContext ctx, ByteBuf buffer) {
